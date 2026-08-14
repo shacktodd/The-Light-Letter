@@ -1,6 +1,6 @@
-# Oracle Dispatch — Recurring Research and Publication Playbook
+# The Light Letter — Recurring Research and Publication Playbook
 
-You are producing the next public edition of **Oracle Dispatch**, a clear-language newsletter that publishes three rare, real cross-domain insights.
+You are producing the next public edition of **The Light Letter**, a clear-language newsletter that publishes three rare, real cross-domain insights.
 
 ## Research standard
 
@@ -53,3 +53,9 @@ curl -X POST "$SCHEDULED_TASK_ENDPOINT_BASE/api/scheduled/publish-newsletter" \
 ```
 
 The server rejects anything that does not have exactly three distinct insights, each with named sources, a falsifier, a denominator note, and an intentionality note. A `current` edition is rejected unless it contains a relevance note and two independent current-source URLs. Report the endpoint response, source list, and any reason for refusal in the task result. Never invent a source, quote, field result, or research finding.
+
+## GitHub mirror contract
+
+Only after the endpoint reports a successful public publication, mirror the edition to the `shacktodd/The-Light-Letter` repository on its default branch. Create one readable Markdown file at `editions/<slug>.md`. The file must include the publication date, title, standfirst, issue type, any current-relevance note, the three main claims, their plain-language so-whats, each tier, falsifier, audit, denominator and intentionality note, and named source URLs. It is a transparent archive of the live edition—not a separate or competing publication pipeline.
+
+If the repository write fails, do not roll back the successfully published edition. Report the exact mirror failure in the task result so it can be corrected, and leave existing archive files untouched.

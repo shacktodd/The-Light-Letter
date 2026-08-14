@@ -1,7 +1,7 @@
 # Oracle Engine Newsletter Conversion Checklist
 
 - [x] Confirm the managed publication route, with GitHub treated as a code mirror rather than the automation host.
-- [ ] Inspect the available GitHub connection options for an automatic repository mirror and identify any required user authorization.
+- [x] Inspect the available GitHub connection options for an automatic repository mirror and identify any required user authorization.
 - [x] Upgrade the project with secure server-side generation, persistent storage, and scheduling support.
 - [x] Define edition, insight, source, publication-status, and current-events data models.
 - [x] Establish source-validation, human-review, and failure-handling rules for automated content.
@@ -9,10 +9,14 @@
 - [x] Implement the authenticated publication endpoint and quality gate that the recurring research task will use.
 - [x] Create the live recurring three-day research task after the site is published, with a weekly current-events check built into its playbook.
 - [x] Activate the three-day research task against the deployed Oracle Dispatch endpoint and persist its task ownership.
-- [ ] Add GitHub Pages-ready export instructions and repository metadata without attempting external publication.
+- [x] Document the managed-hosting model, the GitHub mirror behavior, and why GitHub Pages is not the production host.
 - [x] Run the newsletter quality-gate unit tests, type check, and production build.
-- [ ] Verify the reader experience on desktop and mobile, then test the live schedule callback after publication.
-- [ ] Resolve the GitHub token’s missing repository-creation permission or connect an existing repository for the code mirror.
-- [ ] Verify the exact owner/repository slug for The Light Letter and push the validated newsletter code to that existing mirror.
-- [ ] Reissue the revoked GitHub authorization request and verify write access to The Light Letter before retrying the mirror push.
+- [ ] Verify after the first post-rename scheduled run that the new live issue appears in Recents and that `editions/<slug>.md` is written to The Light Letter repository.
+- [x] Resolve the GitHub token’s missing repository-creation permission or connect an existing repository for the code mirror.
+- [x] Verify the exact owner/repository slug for The Light Letter and push the validated newsletter code to that existing mirror.
+- [x] Verify that write access was restored and that The Light Letter accepted the mirror push after Git authentication was refreshed.
+- [x] Update the active three-day publisher so every successful live edition also creates a readable GitHub Markdown mirror.
 - [x] Publish the newsletter so the scheduled publication endpoint is available at the production domain.
+- [x] Rename the public-facing newsletter and page metadata to The Light Letter.
+- [x] Refine the visual identity with an illuminated-academic atmosphere without adding the requested theme phrase to public copy.
+- [x] Verify the renamed desktop and mobile experience while preserving archive and automatic schedule behavior.

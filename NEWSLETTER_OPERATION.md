@@ -23,11 +23,13 @@ A single recurring Manus task will run every three days. On each run it will gen
 
 ### Active publisher
 
-The production publisher is active as **Oracle Dispatch: three-day research edition** (task UID `FdLCdNdzWQcJNTVZCdVyVw`) on a 259,200-second interval. It writes only through `/api/scheduled/publish-newsletter`, and the database associates that endpoint with the same task UID. The first production callback will occur on its scheduled interval; no unsourced or under-specified candidate is accepted by the server.
+The production publisher is active as **The Light Letter: three-day research edition** (task UID `FdLCdNdzWQcJNTVZCdVyVw`) on a 259,200-second interval. It writes only through `/api/scheduled/publish-newsletter`, and the database associates that endpoint with the same task UID. The first production callback will occur on its scheduled interval; no unsourced or under-specified candidate is accepted by the server.
 
 ### Repository mirror status
 
-The intended mirror is the public `shacktodd/The-Light-Letter` repository. Its current authorization can read repository metadata but rejects writing with a 403 error. The live newsletter publisher is therefore active independently of GitHub, while repository mirroring waits for a renewed GitHub authorization with write access.
+The managed live site is the source of publication; GitHub Pages is deliberately not used because the newsletter requires a database-backed archive and an authenticated scheduled-publication endpoint. The public `shacktodd/The-Light-Letter` repository is a code and transparent-content mirror. After each successful live issue, the scheduled publisher will write a readable Markdown edition under `editions/` in that repository. A repository-mirror failure never rolls back a live edition.
+
+The mirror was verified after the GitHub authorization was refreshed: its `main` branch contains the production checkpoint commit. The earlier GitHub 403 was resolved by configuring Git to use the active GitHub authorization.
 
 ## Safeguards
 
@@ -36,3 +38,7 @@ The system must not manufacture sources, reviews, quotations, or claims of causa
 ## Implementation baseline
 
 The original public page is a single long-form archival dossier with client-side filtering and source drawers. It will be reorganized into a newsletter landing page while retaining its evidence-forward visual language. The upgraded tRPC router currently provides only system and authentication procedures, so public edition retrieval and owner-only drafting/publication procedures must be added alongside persistent database helpers.
+
+## Public identity refinement
+
+The public newsletter is named **The Light Letter**. Its visual language uses warm ivory paper, deep midnight ink, restrained cobalt annotations, translucent vellum panels, and a single saffron light source. The effect should suggest focused reading and the quiet movement from obscurity toward legibility. This remains a visual system rather than a slogan: public copy does not state the theme directly.
