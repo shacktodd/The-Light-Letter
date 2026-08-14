@@ -12,3 +12,4 @@
 - [x] Run the newsletter quality-gate unit tests, type check, and production build.
 - [ ] Verify the reader experience on desktop and mobile, then test the live schedule callback after publication.
 - [ ] Resolve the GitHub token’s missing repository-creation permission or connect an existing repository for the code mirror.
+- [ ] Verify the exact owner/repository slug for The Light Letter and push the validated newsletter code to that existing mirror.
