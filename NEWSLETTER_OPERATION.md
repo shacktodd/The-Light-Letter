@@ -21,6 +21,14 @@ The recurring research task will perform web research, write structured candidat
 
 A single recurring Manus task will run every three days. On each run it will generate one new issue, determine whether the archive lacks a current-events signal in the last seven days, and add that signal when needed. The task will mirror generated edition assets and site changes to the authorized GitHub repository after the edition passes the quality gate. Because recurring work must write to the live site, the project must first be checkpointed and published; the scheduled task will then write through the site’s authenticated publication endpoint.
 
+### Active publisher
+
+The production publisher is active as **Oracle Dispatch: three-day research edition** (task UID `FdLCdNdzWQcJNTVZCdVyVw`) on a 259,200-second interval. It writes only through `/api/scheduled/publish-newsletter`, and the database associates that endpoint with the same task UID. The first production callback will occur on its scheduled interval; no unsourced or under-specified candidate is accepted by the server.
+
+### Repository mirror status
+
+The intended mirror is the public `shacktodd/The-Light-Letter` repository. Its current authorization can read repository metadata but rejects writing with a 403 error. The live newsletter publisher is therefore active independently of GitHub, while repository mirroring waits for a renewed GitHub authorization with write access.
+
 ## Safeguards
 
 The system must not manufacture sources, reviews, quotations, or claims of causation. It must downgrade any statement that outruns its evidence, record retrieval dates for current-event sources, preserve failure logs, and keep a human-readable correction path. The user-facing language should remain clear: the first screen presents the claim and its practical implication; deeper mechanism, audit, denominator, intentionality, and sources are available without hiding the uncertainty.
