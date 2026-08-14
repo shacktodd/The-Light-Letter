@@ -20,3 +20,5 @@
 - [x] Rename the public-facing newsletter and page metadata to The Light Letter.
 - [x] Refine the visual identity with an illuminated-academic atmosphere without adding the requested theme phrase to public copy.
 - [x] Verify the renamed desktop and mobile experience while preserving archive and automatic schedule behavior.
+- [x] Replace the generic hero headline with an iconic The Light Letter title treatment and approachable AI-synthesis descriptor.
+- [x] Verify the revised The Light Letter hero on desktop and mobile without changing archive or schedule behavior.
