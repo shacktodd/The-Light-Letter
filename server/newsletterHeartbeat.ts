@@ -50,7 +50,9 @@ For each insight: mainClaim is at least 80 characters; soWhat at least 55; evide
 
 Set slug to light-letter-${dateSlug}. ${requiresCurrentSignal ? "This must be a current issue: set issueType to current, give currentRelevance a dated, methodologically relevant explanation of at least 60 characters, and give two independent direct current-source URLs." : "Set issueType to regular unless a current source-grounded connection genuinely improves the edition."}
 
-The newsletter is approachable but skeptical. Write only JSON matching the provided schema; no markdown fences or commentary.`;
+Required JSON keys are slug, title, standfirst, editorNote, issueType, currentRelevance, currentSourceUrls, and insights. Insights must be an array of exactly three objects with title, domains, tier, mainClaim, soWhat, evidenceNote, auditNote, denominatorNote, intentNote, falsifier, and sources. Every source needs label, url, and sourceType. For a regular issue, use an empty string for currentRelevance and an empty array for currentSourceUrls.
+
+The newsletter is approachable but skeptical. Write only JSON; no markdown fences or commentary.`;
 }
 
 async function verifySourceUrls(candidate: PublishEditionInput) {
@@ -97,8 +99,7 @@ export async function generateScheduledNewsletter(req: Request, res: Response) {
     const generated = await invokeLLM({
       model: "gpt-5-mini",
       messages: [{ role: "system", content: "You are a meticulous research editor. Preserve uncertainty and output only valid JSON." }, { role: "user", content: createEditionPrompt(dateSlug, requiresCurrentSignal) }],
-      response_format: { type: "json_object" },
-      maxTokens: 8_000,
+      maxCompletionTokens: 8_000,
     });
     const content = generated.choices?.[0]?.message?.content;
     if (!content) {
