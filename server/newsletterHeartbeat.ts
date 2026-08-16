@@ -113,6 +113,7 @@ export async function generateScheduledNewsletter(req: Request, res: Response) {
     const generated = await invokeLLM({
       model: "gpt-5-nano",
       messages: [{ role: "system", content: "You are a meticulous research editor. Preserve uncertainty and output only valid JSON." }, { role: "user", content: createEditionPrompt(dateSlug, requiresCurrentSignal) }],
+      toolChoice: "none",
       maxCompletionTokens: 2_400,
     });
     const content = generated.choices?.[0]?.message?.content;
