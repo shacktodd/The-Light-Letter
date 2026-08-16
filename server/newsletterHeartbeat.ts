@@ -97,9 +97,14 @@ export async function generateScheduledNewsletter(req: Request, res: Response) {
     const generated = await invokeLLM({
       model: "gpt-5-mini",
       messages: [{ role: "system", content: "You are a meticulous research editor. Preserve uncertainty and output only valid JSON." }, { role: "user", content: createEditionPrompt(dateSlug, requiresCurrentSignal) }],
-      response_format: { type: "json_schema", json_schema: { name: "newsletter_edition", strict: true, schema: editionJsonSchema } },
+      response_format: { type: "json_object" },
+      maxTokens: 8_000,
     });
-    const candidate = publishEditionSchema.parse(extractModelJson(generated.choices[0]?.message.content));
+    const content = generated.choices?.[0]?.message?.content;
+    if (!content) {
+      throw new Error(`Research model returned no readable choices: ${JSON.stringify(generated).slice(0, 600)}`);
+    }
+    const candidate = publishEditionSchema.parse(extractModelJson(content));
     await verifySourceUrls(candidate);
     const result = await publishEdition(candidate, user.taskUid);
     return res.json({ ok: true, mode: "site-owned-heartbeat", ...result });
