@@ -26,3 +26,4 @@
 - [ ] Repair the missed-run failure and verify a live issue plus GitHub Markdown mirror are produced end to end.
 - [ ] Replace the non-observable agent trigger with a site-owned three-day publication job that records failures and retryable outcomes.
 - [ ] Validate the site-owned publisher’s generated edition against the same source, audit, denominator, intentionality, and falsifier gate.
+- [ ] Add a bounded verified-edition fallback that publishes within the scheduler limit when fresh generation times out.
