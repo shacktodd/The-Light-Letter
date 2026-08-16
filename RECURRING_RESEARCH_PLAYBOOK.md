@@ -46,13 +46,13 @@ The live endpoint expects one JSON object with this shape:
 After quality-checking the JSON, use `curl` to POST it to the deployed newsletter:
 
 ```sh
-curl -X POST "$SCHEDULED_TASK_ENDPOINT_BASE/api/scheduled/publish-newsletter" \
+curl --fail-with-body --retry 2 --retry-delay 3 -X POST "$SCHEDULED_TASK_ENDPOINT_BASE/api/scheduled/publish-newsletter" \
   -H "Content-Type: application/json" \
   -H "Cookie: app_session_id=$SCHEDULED_TASK_COOKIE" \
   -d @edition.json
 ```
 
-The server rejects anything that does not have exactly three distinct insights, each with named sources, a falsifier, a denominator note, and an intentionality note. A `current` edition is rejected unless it contains a relevance note and two independent current-source URLs. Report the endpoint response, source list, and any reason for refusal in the task result. Never invent a source, quote, field result, or research finding.
+The server rejects anything that does not have exactly three distinct insights, each with named sources, a falsifier, a denominator note, and an intentionality note. A `current` edition is rejected unless it contains a relevance note and two independent current-source URLs. **A run is incomplete until this request returns JSON with `ok: true`.** Do not stop after research, drafting, or explaining your approach. Save the payload as `edition.json`, execute the request, inspect its response, and only then continue to the repository mirror. If the request fails after the two retries, report the endpoint status and body verbatim in the task result. Never invent a source, quote, field result, or research finding.
 
 ## GitHub mirror contract
 

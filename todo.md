@@ -22,3 +22,5 @@
 - [x] Verify the renamed desktop and mobile experience while preserving archive and automatic schedule behavior.
 - [x] Replace the generic hero headline with an iconic The Light Letter title treatment and approachable AI-synthesis descriptor.
 - [x] Verify the revised The Light Letter hero on desktop and mobile without changing archive or schedule behavior.
+- [ ] Diagnose why the active three-day publisher missed its first expected production edition.
+- [ ] Repair the missed-run failure and verify a live issue plus GitHub Markdown mirror are produced end to end.
