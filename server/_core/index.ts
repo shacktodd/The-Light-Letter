@@ -9,6 +9,7 @@ import { appRouter } from "../routers";
 import { createContext } from "./context";
 import { serveStatic, setupVite } from "./vite";
 import { publishScheduledNewsletter } from "../newsletterSchedule";
+import { generateScheduledNewsletter } from "../newsletterHeartbeat";
 
 function isPortAvailable(port: number): Promise<boolean> {
   return new Promise(resolve => {
@@ -38,6 +39,7 @@ async function startServer() {
   registerStorageProxy(app);
   registerOAuthRoutes(app);
   app.post("/api/scheduled/publish-newsletter", publishScheduledNewsletter);
+  app.post("/api/scheduled/generate-newsletter", generateScheduledNewsletter);
   // tRPC API
   app.use(
     "/api/trpc",

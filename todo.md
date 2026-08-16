@@ -24,3 +24,5 @@
 - [x] Verify the revised The Light Letter hero on desktop and mobile without changing archive or schedule behavior.
 - [ ] Diagnose why the active three-day publisher missed its first expected production edition.
 - [ ] Repair the missed-run failure and verify a live issue plus GitHub Markdown mirror are produced end to end.
+- [ ] Replace the non-observable agent trigger with a site-owned three-day publication job that records failures and retryable outcomes.
+- [ ] Validate the site-owned publisher’s generated edition against the same source, audit, denominator, intentionality, and falsifier gate.

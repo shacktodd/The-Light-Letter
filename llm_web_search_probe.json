@@ -1,0 +1,7 @@
+{
+  "model": "gpt-5-mini",
+  "messages": [
+    {"role": "user", "content": "Use current web research to name one reputable source published in 2026 about a current science or policy development. Return exactly one short sentence with the source title and URL."}
+  ],
+  "max_completion_tokens": 800
+}
